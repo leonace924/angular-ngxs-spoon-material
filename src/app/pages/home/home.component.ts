@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+
+import { MenuItemState } from 'src/app/states/menu-item.state';
+import { GetMenuItems } from 'src/app/actions/menu-item.action';
+import { MenuItemModel } from 'src/app/models/menu-item.model';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +12,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  @Select(MenuItemState.getMenuItemList) items: Observable<MenuItemModel[]>;
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
+    this.store.dispatch(new GetMenuItems());
   }
-
 }

@@ -1,3 +1,15 @@
 <div>
   <app-search-bar></app-search-bar>
+
+  <mat-progress-spinner mode="indeterminate" *ngIf="items | async">
+  </mat-progress-spinner>
+
+  <div class="container">
+    <div class="menu-item-list">
+      <div class="row" *ngIf="items">
+        <app-menu-card *ngFor="let item of items | async" [name]="item.name" [photoUrl]="item.photo"
+          [rating]="item.rating"></app-menu-card>
+      </div>
+    </div>
+  </div>
 </div>
