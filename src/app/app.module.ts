@@ -19,6 +19,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 
 import { MenuItemState } from './states/menu-item.state';
 import { MenuCardComponent } from './components/menu-card/menu-card.component';
+
 @NgModule({
   declarations: [
     AppComponent,
