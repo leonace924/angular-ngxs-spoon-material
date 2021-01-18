@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgxsModule } from '@ngxs/store';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxsActionsExecutingModule } from '@ngxs-labs/actions-executing';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +41,7 @@ import { FiltersComponent } from './components/filters/filters.component';
     LazyLoadImageModule,
     MaterialModule,
     ServicesModule,
+    InfiniteScrollModule,
     NgxsModule.forRoot([MenuItemState], { developmentMode: !env.production }),
     NgxsActionsExecutingModule.forRoot()
   ],

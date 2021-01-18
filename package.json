@@ -25,6 +25,7 @@
     "@ngxs/store": "^3.7.1",
     "bootstrap": "^4.5.3",
     "ng-lazyload-image": "^9.1.0",
+    "ngx-infinite-scroll": "^10.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

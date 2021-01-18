@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MenuItemModel } from 'src/app/models/menu-item.model';
 
 @Component({
   selector: 'app-menu-card',
@@ -6,9 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./menu-card.component.scss']
 })
 export class MenuCardComponent implements OnInit {
-  @Input() name: string;
-  @Input() rating: number;
-  @Input() photoUrl: string;
+  @Input() item: MenuItemModel;
 
   defaultImage = 'https://via.placeholder.com/420x320';
 

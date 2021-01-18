@@ -8,6 +8,7 @@ import { MenuItemModel } from '../models/menu-item.model';
 
 export class MenuItemStateModel {
   items: MenuItemModel[];
+  hasNext: boolean;
   selectedItem: MenuItemModel;
 }
 
@@ -15,6 +16,7 @@ export class MenuItemStateModel {
   name: 'menuItems',
   defaults: {
     items: [],
+    hasNext: true,
     selectedItem: null
   }
 })
@@ -34,12 +36,14 @@ export class MenuItemState {
   }
 
   @Action(GetMenuItems)
-  getMenuItems({ getState, setState }: StateContext<MenuItemStateModel>) {
-    return this.menuItemService.fetchMenuItems().pipe(tap((res) => {
+  getMenuItems({ getState, setState }: StateContext<MenuItemStateModel>, action: GetMenuItems) {
+    return this.menuItemService.fetchMenuItems(action.page).pipe(tap((res) => {
       const state = getState();
+
       setState({
         ...state,
-        items: res.results.items,
+        hasNext: res.hasNext,
+        items: [...state.items.concat(res.results?.items)]
       });
     }));
   }

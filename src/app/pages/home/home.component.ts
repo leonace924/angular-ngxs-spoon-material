@@ -16,9 +16,24 @@ export class HomeComponent implements OnInit {
   @Select(MenuItemState.getMenuItemList) items: Observable<MenuItemModel[]>;
   @Select(actionsExecuting([GetMenuItems])) getItemsIsExecuting: Observable<ActionsExecuting>;
 
+  throttle = 50;
+  scrollDistance = 1;
+  page: number = 1;
+
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.store.dispatch(new GetMenuItems());
+    this.getMenuItems();
+  }
+
+  onScrollEnd() {
+    this.page += 1;
+    if (this.page <= 5) {
+      this.getMenuItems();
+    }
+  }
+
+  getMenuItems() {
+    this.store.dispatch(new GetMenuItems(this.page));
   }
 }

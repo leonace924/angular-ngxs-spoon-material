@@ -1,5 +1,7 @@
 :host {
   .food-card {
+    margin-bottom: 24px;
+
     img {
       height: 220px;
       object-fit: cover;
@@ -7,6 +9,7 @@
 
     .mat-card-title {
       margin-bottom: 16px;
+      font-size: 20px;
     }
 
     &__rating {
@@ -18,6 +21,7 @@
         color: #666;
         font-size: 18px;
         margin-bottom: 0;
+        padding-left: 4px;
       }
     }
   }

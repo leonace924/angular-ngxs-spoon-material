@@ -1,7 +1,7 @@
 <div>
   <app-search-bar></app-search-bar>
 
-  <div class="menu-container px-3 pt-2">
+  <div class="menu-container px-3 pt-2 pb-4">
     <div class="row">
       <div class="col-lg-3">
         <app-filters></app-filters>
@@ -9,15 +9,19 @@
 
       <div class="col-lg-9">
         <div class="menu-item-list pt-4 px-5">
+          <div class="menu-list" infinite-scroll [infiniteScrollDistance]="scrollDistance"
+            [infiniteScrollThrottle]="throttle" (scrolled)="onScrollEnd()">
+
+            <div class="row" *ngIf="items">
+              <div class="col-md-4" *ngFor="let item of items | async">
+                <app-menu-card [item]="item"></app-menu-card>
+              </div>
+            </div>
+          </div>
+
           <mat-progress-spinner mode="indeterminate" diameter="30"
             *ngIf="getItemsIsExecuting | async">
           </mat-progress-spinner>
-          <div class="row" *ngIf="items">
-            <div class="col-md-4" *ngFor="let item of items | async">
-              <app-menu-card [name]="item.name" [photoUrl]="item.photo" [rating]="item.rating">
-              </app-menu-card>
-            </div>
-          </div>
         </div>
       </div>
     </div>
