@@ -8,12 +8,12 @@
       </div>
 
       <div class="col-lg-9">
-        <div class="menu-item-list pt-4 px-5">
+        <div class="menu-item-list pt-4 px-2 px-lg-3 px-xl-4">
           <div class="menu-list" infinite-scroll [infiniteScrollDistance]="scrollDistance"
             [infiniteScrollThrottle]="throttle" (scrolled)="onScrollEnd()">
 
             <div class="row" *ngIf="items">
-              <div class="col-md-4" *ngFor="let item of items | async">
+              <div class="col-lg-6 col-xl-4" *ngFor="let item of items | async">
                 <app-menu-card [item]="item"></app-menu-card>
               </div>
             </div>
