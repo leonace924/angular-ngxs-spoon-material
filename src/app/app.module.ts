@@ -19,6 +19,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 
 import { MenuItemState } from './states/menu-item.state';
 import { MenuCardComponent } from './components/menu-card/menu-card.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MenuCardComponent } from './components/menu-card/menu-card.component';
     HeaderComponent,
     SearchBarComponent,
     MenuCardComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,
