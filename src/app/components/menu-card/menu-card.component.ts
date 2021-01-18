@@ -10,6 +10,8 @@ export class MenuCardComponent implements OnInit {
   @Input() rating: number;
   @Input() photoUrl: string;
 
+  defaultImage = 'https://via.placeholder.com/420x320';
+
   constructor() { }
 
   ngOnInit(): void {

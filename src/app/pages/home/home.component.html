@@ -1,14 +1,14 @@
 <div>
   <app-search-bar></app-search-bar>
 
-  <div class="menu-container px-3">
+  <div class="menu-container px-3 pt-2">
     <div class="row">
       <div class="col-lg-3">
         <app-filters></app-filters>
       </div>
 
       <div class="col-lg-9">
-        <div class="menu-item-list">
+        <div class="menu-item-list pt-4 px-5">
           <mat-progress-spinner mode="indeterminate" diameter="30"
             *ngIf="getItemsIsExecuting | async">
           </mat-progress-spinner>

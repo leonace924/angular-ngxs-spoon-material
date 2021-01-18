@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsActionsExecutingModule } from '@ngxs-labs/actions-executing';
 
@@ -36,6 +37,7 @@ import { FiltersComponent } from './components/filters/filters.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    LazyLoadImageModule,
     MaterialModule,
     ServicesModule,
     NgxsModule.forRoot([MenuItemState], { developmentMode: !env.production }),

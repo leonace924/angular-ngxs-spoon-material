@@ -12,11 +12,9 @@ export interface CheckboxModel {
 })
 export class FiltersComponent implements OnInit {
   foodTypes: CheckboxModel[] = [
-    { name: 'Pastries', selected: false },
+    { name: 'Pizza', selected: false },
     { name: 'Seafood', selected: false },
     { name: 'Burger', selected: false },
-    { name: 'Steak', selected: false },
-    { name: 'Porridge', selected: false },
   ];
 
   mealTypes: CheckboxModel[] = [

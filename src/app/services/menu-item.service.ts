@@ -14,7 +14,7 @@ export class MenuItemService {
       page: page,
       size: limit,
       params: {
-        // term: ["Steak"]
+        term: ["Pizza"]
       }
     }, {
       headers: {
