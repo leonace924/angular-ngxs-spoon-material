@@ -39,33 +39,33 @@ export class HomeComponent implements OnInit {
     this.keys.push(key);
     this.terms = this.keys.map(key => `"${key}"`).join(', ');
 
-    this.page = 1;
-    this.store.dispatch(new StateReset(MenuItemState));
-    this.getMenuItems();
+    this.filterNewItems();
   }
 
   onFilterUpdated(filters: Array<string>) {
     this.filters = filters;
 
-    this.page = 1;
-    this.store.dispatch(new StateReset(MenuItemState));
-    this.getMenuItems();
+    this.filterNewItems();
   }
 
   clearSearch() {
     this.terms = '';
     this.keys.splice(0, this.keys.length);
 
-    this.page = 1;
-    this.store.dispatch(new StateReset(MenuItemState));
-    this.getMenuItems();
+    this.filterNewItems();
   }
 
   getMenuItems() {
     this.store.dispatch(new GetMenuItems(this.page, this.keys, this.filters));
   }
 
-  filterItems() {
-    // this.store.dispatch(new SearchItems(this.keys, this.filters));
+  filterNewItems() {
+    // reset state and page
+    this.page = 1;
+    this.store.dispatch(new StateReset(MenuItemState));
+
+    // call GetMenuItems action
+    this.getMenuItems();
   }
+
 }

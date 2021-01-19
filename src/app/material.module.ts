@@ -7,18 +7,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatCheckboxModule
-  ],
   exports: [
     MatButtonModule,
     MatIconModule,
@@ -27,7 +18,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatInputModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ]
 })
 
