@@ -15,13 +15,14 @@ export class MenuItemService {
 
   constructor(private http: HttpClient) { }
 
-  fetchMenuItems(page, limit = 10) {
+  fetchMenuItems(page, limit = 10, terms, tags) {
     return this.http.post<any>(`${this.apiUrl}/search/v2/composed`, {
       entity: "item",
       page: page,
       size: limit,
       params: {
-        // term: ["Pizza"]
+        term: terms,
+        tags: tags
       }
     }, this.options);
   }

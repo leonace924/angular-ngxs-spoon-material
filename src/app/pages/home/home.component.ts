@@ -5,7 +5,8 @@ import { actionsExecuting, ActionsExecuting } from '@ngxs-labs/actions-executing
 
 import { MenuItemModel } from 'src/app/models/menu-item.model';
 import { MenuItemState } from 'src/app/states/menu-item.state';
-import { GetMenuItems, SearchItems } from 'src/app/actions/menu-item.action';
+import { GetMenuItems } from 'src/app/actions/menu-item.action';
+import { StateReset } from 'ngxs-reset-plugin';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,11 @@ import { GetMenuItems, SearchItems } from 'src/app/actions/menu-item.action';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  @Select(MenuItemState.getFilteredItemList) items: Observable<MenuItemModel[]>;
+  @Select(MenuItemState.getMenuItemList) items: Observable<MenuItemModel[]>;
   @Select(actionsExecuting([GetMenuItems])) getItemsIsExecuting: Observable<ActionsExecuting>;
 
-  throttle = 50;
-  scrollDistance = 1;
+  throttle = 100;
+  scrollDistance = 0.5;
   page: number = 1;
   keys: Array<string> = [];
   filters: Array<string> = [];
@@ -27,35 +28,37 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMenuItems();
-
-    this.filterItems();
   }
 
   onScrollEnd() {
     this.page += 1;
     this.getMenuItems();
-
-    this.filterItems();
   }
 
   onKeyTermAdded(key: string) {
     this.keys.push(key);
     this.terms = this.keys.map(key => `"${key}"`).join(', ');
 
-    this.filterItems();
+    this.page = 1;
+    this.store.dispatch(new StateReset(MenuItemState));
+    this.getMenuItems();
   }
 
   onFilterUpdated(filters: Array<string>) {
     this.filters = filters;
 
-    this.filterItems();
+    this.page = 1;
+    this.store.dispatch(new StateReset(MenuItemState));
+    this.getMenuItems();
   }
 
   clearSearch() {
     this.terms = '';
     this.keys.splice(0, this.keys.length);
 
-    this.filterItems();
+    this.page = 1;
+    this.store.dispatch(new StateReset(MenuItemState));
+    this.getMenuItems();
   }
 
   getMenuItems() {
@@ -63,6 +66,6 @@ export class HomeComponent implements OnInit {
   }
 
   filterItems() {
-    this.store.dispatch(new SearchItems(this.keys, this.filters));
+    // this.store.dispatch(new SearchItems(this.keys, this.filters));
   }
 }

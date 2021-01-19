@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgxsModule } from '@ngxs/store';
+import { NgxsResetPluginModule } from 'ngxs-reset-plugin';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxsActionsExecutingModule } from '@ngxs-labs/actions-executing';
 
@@ -45,7 +46,8 @@ import { FiltersComponent } from './components/filters/filters.component';
     InfiniteScrollModule,
     FormsModule,
     NgxsModule.forRoot([MenuItemState], { developmentMode: !env.production }),
-    NgxsActionsExecutingModule.forRoot()
+    NgxsActionsExecutingModule.forRoot(),
+    NgxsResetPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

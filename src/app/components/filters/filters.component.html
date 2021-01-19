@@ -20,4 +20,13 @@
     </li>
   </ul>
   <hr />
+
+  <h3 class="pl-3">No alcoholic beverage</h3>
+  <ul>
+    <li *ngFor="let type of beverageTypes">
+      <mat-checkbox [(ngModel)]="type.selected" (ngModelChange)="updateFilter()" color="primary">
+        {{type.name}}</mat-checkbox>
+    </li>
+  </ul>
+  <hr />
 </div>

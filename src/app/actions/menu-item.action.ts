@@ -1,5 +1,3 @@
-import { MenuItemModel } from '../models/menu-item.model';
-
 export class GetMenuItems {
   static readonly type = '[Menu List] Get List';
 
@@ -7,10 +5,3 @@ export class GetMenuItems {
   }
 }
 
-export class SearchItems {
-  static readonly type = '[Menu List] Search Items';
-
-  constructor(public keys: Array<string>, public filters: Array<string>) {
-
-  }
-}
