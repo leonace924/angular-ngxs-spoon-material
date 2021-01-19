@@ -1,14 +1,14 @@
 <div>
   <app-search-bar (valueChanged)="onKeyTermAdded($event)"></app-search-bar>
 
-  <div class="menu-container px-3 pt-2 pb-4">
+  <div class="menu-list px-3 pt-2 pb-4">
     <div class="row">
       <div class="col-lg-3">
-        <app-filters></app-filters>
+        <app-filters (filterChanged)="onFilterUpdated($event)"></app-filters>
       </div>
 
       <div class="col-lg-9">
-        <div class="menu-item-list pt-4 px-2 px-lg-3 px-xl-4">
+        <div class="menu-list-wrapper pt-4 px-2 px-lg-3 px-xl-4">
           <div class="search-terms" *ngIf="terms">
             <div class="d-flex align-items-center">
               <h2 class="mb-0">Results for {{terms}}</h2>
@@ -21,7 +21,7 @@
             <hr />
           </div>
 
-          <div class="menu-scroll" infinite-scroll [infiniteScrollDistance]="scrollDistance"
+          <div class="menu-list__scroll" infinite-scroll [infiniteScrollDistance]="scrollDistance"
             [infiniteScrollThrottle]="throttle" (scrolled)="onScrollEnd()">
 
             <div class="row" *ngIf="items">
@@ -29,11 +29,12 @@
                 <app-menu-card [item]="item"></app-menu-card>
               </div>
             </div>
+
+            <mat-progress-spinner mode="indeterminate" diameter="30"
+              *ngIf="getItemsIsExecuting | async">
+            </mat-progress-spinner>
           </div>
 
-          <mat-progress-spinner mode="indeterminate" diameter="30"
-            *ngIf="getItemsIsExecuting | async">
-          </mat-progress-spinner>
         </div>
       </div>
     </div>

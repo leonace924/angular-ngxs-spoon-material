@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgxsModule } from '@ngxs/store';
@@ -42,6 +43,7 @@ import { FiltersComponent } from './components/filters/filters.component';
     MaterialModule,
     ServicesModule,
     InfiniteScrollModule,
+    FormsModule,
     NgxsModule.forRoot([MenuItemState], { developmentMode: !env.production }),
     NgxsActionsExecutingModule.forRoot()
   ],

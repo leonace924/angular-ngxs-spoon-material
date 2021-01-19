@@ -5,7 +5,7 @@ import { actionsExecuting, ActionsExecuting } from '@ngxs-labs/actions-executing
 
 import { MenuItemModel } from 'src/app/models/menu-item.model';
 import { MenuItemState } from 'src/app/states/menu-item.state';
-import { GetMenuItems, SearchMenuItems } from 'src/app/actions/menu-item.action';
+import { GetMenuItems, SearchItems } from 'src/app/actions/menu-item.action';
 
 @Component({
   selector: 'app-home',
@@ -20,38 +20,49 @@ export class HomeComponent implements OnInit {
   scrollDistance = 1;
   page: number = 1;
   keys: Array<string> = [];
+  filters: Array<string> = [];
   terms: string;
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.getMenuItems();
+
+    this.filterItems();
   }
 
   onScrollEnd() {
     this.page += 1;
     this.getMenuItems();
+
+    this.filterItems();
   }
 
   onKeyTermAdded(key: string) {
     this.keys.push(key);
     this.terms = this.keys.map(key => `"${key}"`).join(', ');
 
-    this.searchMenuItems();
+    this.filterItems();
+  }
+
+  onFilterUpdated(filters: Array<string>) {
+    this.filters = filters;
+
+    this.filterItems();
   }
 
   clearSearch() {
     this.terms = '';
     this.keys.splice(0, this.keys.length);
 
-    this.searchMenuItems();
+    this.filterItems();
   }
 
   getMenuItems() {
-    this.store.dispatch(new GetMenuItems(this.page, this.keys));
+    this.store.dispatch(new GetMenuItems(this.page, this.keys, this.filters));
   }
 
-  searchMenuItems() {
-    this.store.dispatch(new SearchMenuItems(this.keys));
+  filterItems() {
+    this.store.dispatch(new SearchItems(this.keys, this.filters));
   }
 }

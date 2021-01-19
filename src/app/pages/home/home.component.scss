@@ -1,6 +1,14 @@
 :host {
-  .menu-container {
+  .menu-list {
     max-width: 2000px;
     margin: 0 auto;
+
+    &-wrapper {
+      height: 100%;
+    }
+
+    &__scroll {
+      height: 100%;
+    }
   }
 }

@@ -5,7 +5,9 @@
   <h3 class="pl-3">Meal types</h3>
   <ul>
     <li *ngFor="let type of mealTypes">
-      <mat-checkbox [(ngModel)]="type.selected" color="primary">{{type.name}}</mat-checkbox>
+      <mat-checkbox [(ngModel)]="type.selected" (ngModelChange)="updateFilter()" color="primary">
+        {{type.name}}
+      </mat-checkbox>
     </li>
   </ul>
   <hr />
@@ -13,15 +15,8 @@
   <h3 class="pl-3">Food types</h3>
   <ul>
     <li *ngFor="let type of foodTypes">
-      <mat-checkbox [(ngModel)]="type.selected" color="primary">{{type.name}}</mat-checkbox>
-    </li>
-  </ul>
-  <hr />
-
-  <h3 class="pl-3">No alcoholic beverage</h3>
-  <ul>
-    <li *ngFor="let type of beverageTypes">
-      <mat-checkbox [(ngModel)]="type.selected" color="primary">{{type.name}}</mat-checkbox>
+      <mat-checkbox [(ngModel)]="type.selected" (ngModelChange)="updateFilter()" color="primary">
+        {{type.name}}</mat-checkbox>
     </li>
   </ul>
   <hr />

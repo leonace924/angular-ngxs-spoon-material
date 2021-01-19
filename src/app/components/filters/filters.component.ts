@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 export interface CheckboxModel {
   name: string;
@@ -11,11 +11,7 @@ export interface CheckboxModel {
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit {
-  foodTypes: CheckboxModel[] = [
-    { name: 'Pizza', selected: false },
-    { name: 'Seafood', selected: false },
-    { name: 'Burger', selected: false },
-  ];
+  @Output() filterChanged = new EventEmitter<Array<string>>();
 
   mealTypes: CheckboxModel[] = [
     { name: 'Main', selected: false },
@@ -23,14 +19,22 @@ export class FiltersComponent implements OnInit {
     { name: 'Appetizer', selected: false },
   ];
 
-  beverageTypes: CheckboxModel[] = [
-    { name: 'Juice', selected: false },
-    { name: 'Coffee', selected: false },
+  foodTypes: CheckboxModel[] = [
+    { name: 'Pizza', selected: false },
+    { name: 'Seafood', selected: false },
+    { name: 'Burger', selected: false },
   ];
+
 
   constructor() { }
 
   ngOnInit(): void {
+    this.updateFilter();
   }
 
+  updateFilter() {
+    let foods: Array<string> = this.foodTypes.filter((val) => val.selected).map((val) => val.name);
+    let meals: Array<string> = this.mealTypes.filter((val) => val.selected).map((val) => val.name);
+    this.filterChanged.emit(foods.concat(meals));
+  }
 }

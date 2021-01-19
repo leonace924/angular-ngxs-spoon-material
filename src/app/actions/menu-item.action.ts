@@ -3,14 +3,14 @@ import { MenuItemModel } from '../models/menu-item.model';
 export class GetMenuItems {
   static readonly type = '[Menu List] Get List';
 
-  constructor(public page: number, public keys: Array<string>) {
+  constructor(public page: number, public keys: Array<string>, public filters: Array<string>) {
   }
 }
 
-export class SearchMenuItems {
+export class SearchItems {
   static readonly type = '[Menu List] Search Items';
 
-  constructor(public keys: Array<string>) {
+  constructor(public keys: Array<string>, public filters: Array<string>) {
 
   }
 }

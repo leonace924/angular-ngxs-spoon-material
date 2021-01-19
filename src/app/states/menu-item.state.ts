@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { GetMenuItems, SearchMenuItems } from '../actions/menu-item.action';
-import { MenuItemService } from '../services/menu-item.service';
 import { MenuItemModel } from '../models/menu-item.model';
+import { MenuItemService } from '../services/menu-item.service';
+import { GetMenuItems, SearchItems } from '../actions/menu-item.action';
 
 export class MenuItemStateModel {
   allItems: MenuItemModel[];
@@ -41,29 +41,37 @@ export class MenuItemState {
   }
 
   @Action(GetMenuItems)
-  getMenuItems({ getState, patchState }: StateContext<MenuItemStateModel>, { page, keys }: GetMenuItems) {
+  getMenuItems({ getState, patchState }: StateContext<MenuItemStateModel>, { page, keys, filters }: GetMenuItems) {
     return this.menuItemService.fetchMenuItems(page).pipe(tap((res: any) => {
       const state = getState();
 
       if (!res.results) return;
 
+      let newItems = [...state.allItems.filter((val) =>
+        keys.every((key) => val.name.toLowerCase().includes(key.toLowerCase()))
+      )];
+
       patchState({
         allItems: [...state.allItems.concat(res.results?.items)],
-        filteredItems: [...state.allItems.concat(res.results?.items)].filter((val) =>
-          keys.every((key) => val.name.toLowerCase().includes(key.toLowerCase()))
-        )
+        filteredItems: [...newItems.filter((val) =>
+          filters.every((key) => val.tags.some((tag) => tag.name.toLowerCase().includes(key.toLowerCase())))
+        )]
       });
     }));
   }
 
-  @Action(SearchMenuItems)
-  searchMenuItems({ getState, patchState }: StateContext<MenuItemStateModel>, { keys }: SearchMenuItems) {
+  @Action(SearchItems)
+  searchItemsByName({ getState, patchState }: StateContext<MenuItemStateModel>, { keys, filters }: SearchItems) {
     const state = getState();
+
+    let newItems = [...state.allItems.filter((val) =>
+      keys.every((key) => val.name.toLowerCase().includes(key.toLowerCase()))
+    )];
 
     patchState({
       filteredItems:
-        [...state.allItems.filter((val) =>
-          keys.every((key) => val.name.toLowerCase().includes(key.toLowerCase()))
+        [...newItems.filter((val) =>
+          filters.every((key) => val.tags.some((tag) => tag.name.toLowerCase().includes(key.toLowerCase())))
         )]
     })
   }
