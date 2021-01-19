@@ -35,17 +35,18 @@ export class MenuItemState {
   }
 
   @Action(GetMenuItems)
-  getMenuItems({ getState, patchState }: StateContext<MenuItemStateModel>, { page, keys, filters }: GetMenuItems) {
+  getMenuItems({ getState, patchState }: StateContext<MenuItemStateModel>, { page, keys, tags, sortKey, isAscending }: GetMenuItems) {
     keys = keys.map((key) => key.toLowerCase());
 
-    return this.menuItemService.fetchMenuItems(page, 10, keys, filters).pipe(tap((res: any) => {
-      const state = getState();
+    return this.menuItemService
+      .fetchMenuItems(page, 10, keys, tags, sortKey, isAscending).pipe(tap((res: any) => {
+        const state = getState();
 
-      if (!res.results) return;
+        if (!res.results) return;
 
-      patchState({
-        allItems: [...state.allItems, ...res.results?.items],
-      });
-    }));
+        patchState({
+          allItems: [...state.allItems, ...res.results?.items],
+        });
+      }));
   }
 }

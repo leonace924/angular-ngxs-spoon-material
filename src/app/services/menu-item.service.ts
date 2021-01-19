@@ -15,14 +15,20 @@ export class MenuItemService {
 
   constructor(private http: HttpClient) { }
 
-  fetchMenuItems(page, limit = 10, terms, tags) {
+  fetchMenuItems(page, limit = 10, terms, tags, sortKey, isAscending) {
     return this.http.post<any>(`${this.apiUrl}/search/v2/composed`, {
       entity: "item",
       page: page,
       size: limit,
       params: {
         term: terms,
-        tags: tags
+        tags: tags,
+        returnConditions: {
+          sorting: {
+            field: sortKey,
+            ascendingOrder: isAscending
+          },
+        }
       }
     }, this.options);
   }

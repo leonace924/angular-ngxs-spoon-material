@@ -24,6 +24,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { MenuItemState } from './states/menu-item.state';
 import { MenuCardComponent } from './components/menu-card/menu-card.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { SortByHeaderComponent } from './components/sort-by-header/sort-by-header.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FiltersComponent } from './components/filters/filters.component';
     SearchBarComponent,
     MenuCardComponent,
     FiltersComponent,
+    SortByHeaderComponent,
   ],
   imports: [
     BrowserModule,

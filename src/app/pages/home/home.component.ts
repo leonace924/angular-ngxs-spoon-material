@@ -19,10 +19,13 @@ export class HomeComponent implements OnInit {
 
   throttle = 100;
   scrollDistance = 0.5;
+
   page: number = 1;
   keys: Array<string> = [];
   filters: Array<string> = [];
   terms: string;
+  selectedSort: string = "name";
+  selectedOrder: boolean = true;
 
   constructor(private store: Store) { }
 
@@ -55,8 +58,18 @@ export class HomeComponent implements OnInit {
     this.filterNewItems();
   }
 
+  onSortUpdated(sortKey: string) {
+    this.selectedSort = sortKey;
+    this.filterNewItems();
+  }
+
+  onOrderUpdated(order: boolean) {
+    this.selectedOrder = order;
+    this.filterNewItems();
+  }
+
   getMenuItems() {
-    this.store.dispatch(new GetMenuItems(this.page, this.keys, this.filters));
+    this.store.dispatch(new GetMenuItems(this.page, this.keys, this.filters, this.selectedSort, this.selectedOrder));
   }
 
   filterNewItems() {
@@ -67,5 +80,4 @@ export class HomeComponent implements OnInit {
     // call GetMenuItems action
     this.getMenuItems();
   }
-
 }

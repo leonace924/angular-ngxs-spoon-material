@@ -9,14 +9,19 @@
 
       <div class="col-lg-9">
         <div class="menu-list-wrapper pt-4 px-2 px-lg-3 px-xl-4">
-          <div class="search-terms">
-            <div class="d-flex align-items-center">
-              <h2 class="mb-0">Results for {{terms}}</h2>
+          <div class="menu-list__terms">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center">
+                <h2 class="mb-0">Results for {{terms}}</h2>
 
-              <button mat-icon-button aria-label="button for cancel" color="primary"
-                (click)="clearSearch()" *ngIf="terms">
-                <mat-icon>cancel</mat-icon>
-              </button>
+                <button mat-icon-button aria-label="button for cancel" color="primary"
+                  (click)="clearSearch()" *ngIf="terms">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </div>
+
+              <app-sort-by-header (sortKeyChanged)="onSortUpdated($event)"
+                (orderChanged)="onOrderUpdated($event)"></app-sort-by-header>
             </div>
             <hr />
           </div>

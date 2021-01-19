@@ -9,8 +9,30 @@
       height: 100%;
     }
 
-    // &__scroll {
-    //   flex: 1;
-    // }
+    &__terms {
+      &--sort {
+        width: auto;
+
+        h3 {
+          color: #673ab7;
+          font-weight: 500;
+          padding-right: 10px;
+        }
+
+        ::ng-deep .mat-select {
+          width: 80px;
+          font-size: 16px;
+
+          &:first-of-type {
+            margin-right: 10px;
+          }
+
+          span {
+            color: #673ab7;
+            font-weight: 500;
+          }
+        }
+      }
+    }
   }
 }
