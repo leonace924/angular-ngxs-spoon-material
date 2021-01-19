@@ -1,10 +1,13 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Spoon Angular</span>
+  <div class="d-flex align-items-center">
+    <button mat-icon-button aria-label="icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Spoon Angular</span>
+  </div>
 
-  <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+  <button mat-icon-button class="filter-btn" aria-label="vertical three dot icon"
+    (click)="openSideNav()">
     <mat-icon>more_vert</mat-icon>
   </button>
 </mat-toolbar>

@@ -1,14 +1,25 @@
-<div class="d-flex align-items-center">
-  <h3 class="mb-0">Sort by</h3>
-  <mat-select [(ngModel)]="selectedSort" (ngModelChange)="onSortUpdated()">
-    <mat-option *ngFor="let sortItem of sortList" [value]="sortItem.value">
-      {{ sortItem.viewValue }}
-    </mat-option>
-  </mat-select>
+<div class="d-flex align-items-center justify-content-between">
+  <div class="d-flex align-items-center">
+    <h2 class="mb-0">Results for {{terms}}</h2>
 
-  <mat-select [(ngModel)]="selectedOrder" (ngModelChange)="onOrderUpdated()">
-    <mat-option *ngFor="let order of orderList" [value]="order.value">
-      {{ order.viewValue }}
-    </mat-option>
-  </mat-select>
+    <button mat-icon-button aria-label="button for cancel" color="primary" (click)="clearSearch()"
+      *ngIf="terms">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+
+  <div class="d-flex align-items-center">
+    <h3 class="mb-0">Sort by</h3>
+    <mat-select [(ngModel)]="selectedSort" (ngModelChange)="onSortUpdated()">
+      <mat-option *ngFor="let sortItem of sortList" [value]="sortItem.value">
+        {{ sortItem.viewValue }}
+      </mat-option>
+    </mat-select>
+
+    <mat-select [(ngModel)]="selectedOrder" (ngModelChange)="onOrderUpdated()">
+      <mat-option *ngFor="let order of orderList" [value]="order.value">
+        {{ order.viewValue }}
+      </mat-option>
+    </mat-select>
+  </div>
 </div>

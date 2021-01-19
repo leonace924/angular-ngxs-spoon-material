@@ -1,11 +1,19 @@
-:host {
+@import "~bootstrap/scss/bootstrap-grid.scss";
 
+:host {
   .filters {
-    height: 80vh;
-    position: sticky;
-    top: 1rem;
+    padding-left: 1rem;
     padding-right: 1rem;
-    border-right: 4px solid #EEF0F2;
+    width: 60vw;
+
+    @include media-breakpoint-up(lg) {
+      width: auto;
+      height: 80vh;
+      position: sticky;
+      top: 1rem;
+      border-right: 4px solid #EEF0F2;
+      padding-left: 0;
+    }
   }
 
   ul {

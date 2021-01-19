@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-sort-by-header',
@@ -6,7 +6,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./sort-by-header.component.scss']
 })
 export class SortByHeaderComponent implements OnInit {
+  @Input() terms: string;
   @Output() orderChanged = new EventEmitter<boolean>();
+  @Output() clickRemove = new EventEmitter;
   @Output() sortKeyChanged = new EventEmitter<string>();
 
   selectedSort: string = "name";
@@ -34,5 +36,9 @@ export class SortByHeaderComponent implements OnInit {
 
   onOrderUpdated() {
     this.orderChanged.emit(this.selectedOrder);
+  }
+
+  clearSearch() {
+    this.clickRemove.emit();
   }
 }

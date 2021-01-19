@@ -17,8 +17,8 @@ export class HomeComponent implements OnInit {
   @Select(MenuItemState.getMenuItemList) items: Observable<MenuItemModel[]>;
   @Select(actionsExecuting([GetMenuItems])) getItemsIsExecuting: Observable<ActionsExecuting>;
 
-  throttle = 100;
-  scrollDistance = 0.5;
+  throttle = 80;
+  scrollDistance = 0.8;
 
   page: number = 1;
   keys: Array<string> = [];

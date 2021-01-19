@@ -1,47 +1,47 @@
-<div>
-  <app-search-bar (valueChanged)="onKeyTermAdded($event)"></app-search-bar>
+<app-header (openDrawer)="drawer.toggle()"></app-header>
 
-  <div class="menu-list px-3 pt-2 pb-3">
-    <div class="row">
-      <div class="col-lg-3">
-        <app-filters (filterChanged)="onFilterUpdated($event)"></app-filters>
-      </div>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer mode="over" fixedInViewport>
+    <app-filters (filterChanged)="onFilterUpdated($event)"></app-filters>
+  </mat-drawer>
 
-      <div class="col-lg-9">
-        <div class="menu-list-wrapper pt-4 px-2 px-lg-3 px-xl-4">
-          <div class="menu-list__terms">
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="d-flex align-items-center">
-                <h2 class="mb-0">Results for {{terms}}</h2>
+  <div>
+    <app-search-bar (valueChanged)="onKeyTermAdded($event)"></app-search-bar>
 
-                <button mat-icon-button aria-label="button for cancel" color="primary"
-                  (click)="clearSearch()" *ngIf="terms">
-                  <mat-icon>cancel</mat-icon>
-                </button>
-              </div>
+    <div class="menu-list px-3 pt-2 pb-3">
+      <div class="row">
+        <div class="col-lg-3 menu-list__filters">
+          <app-filters (filterChanged)="onFilterUpdated($event)"></app-filters>
+        </div>
 
+        <div class="col-lg-9">
+          <div class="menu-list-wrapper pt-4 px-2 px-lg-3 px-xl-4">
+            <div>
               <app-sort-by-header (sortKeyChanged)="onSortUpdated($event)"
-                (orderChanged)="onOrderUpdated($event)"></app-sort-by-header>
+                (orderChanged)="onOrderUpdated($event)" (clickRemove)="clearSearch()"
+                [terms]="terms">
+              </app-sort-by-header>
+              <hr />
             </div>
-            <hr />
-          </div>
 
-          <div class="menu-list__scroll" infiniteScroll [infiniteScrollDistance]="scrollDistance"
-            [infiniteScrollThrottle]="throttle" (scrolled)="onScrollEnd()">
+            <div class="menu-list__scroll" infiniteScroll [infiniteScrollDistance]="scrollDistance"
+              [infiniteScrollThrottle]="throttle" (scrolled)="onScrollEnd()">
 
-            <div class="row" *ngIf="items">
-              <div class="col-lg-6 col-xl-4" *ngFor="let item of items | async">
-                <app-menu-card [item]="item"></app-menu-card>
+              <div class="row" *ngIf="items">
+                <div class="col-md-6 col-xl-4" *ngFor="let item of items | async">
+                  <app-menu-card [item]="item"></app-menu-card>
+                </div>
               </div>
+
+              <mat-progress-spinner mode="indeterminate" diameter="30"
+                *ngIf="getItemsIsExecuting | async">
+              </mat-progress-spinner>
             </div>
 
-            <mat-progress-spinner mode="indeterminate" diameter="30"
-              *ngIf="getItemsIsExecuting | async">
-            </mat-progress-spinner>
           </div>
-
         </div>
       </div>
     </div>
   </div>
-</div>
+
+</mat-drawer-container>
