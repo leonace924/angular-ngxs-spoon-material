@@ -4,11 +4,11 @@ import { tap } from 'rxjs/operators';
 
 import { MenuItemModel } from '../models/menu-item.model';
 import { MenuItemService } from '../services/menu-item.service';
-import { GetMenuItems } from '../actions/menu-item.action';
+import { GetMenuItems, GetItemDetails } from '../actions/menu-item.action';
 
 export class MenuItemStateModel {
   allItems: MenuItemModel[];
-  selectedItem: MenuItemModel;
+  selectedItem: any;
 }
 
 @State<MenuItemStateModel>({
@@ -30,7 +30,7 @@ export class MenuItemState {
 
 
   @Selector()
-  static getSelectedTodo(state: MenuItemStateModel) {
+  static getSelectedItem(state: MenuItemStateModel) {
     return state.selectedItem;
   }
 
@@ -46,6 +46,20 @@ export class MenuItemState {
 
         patchState({
           allItems: [...state.allItems, ...res.results?.items],
+        });
+      }));
+  }
+
+  @Action(GetItemDetails)
+  getItemDetails({ getState, patchState }: StateContext<MenuItemStateModel>, { id }: GetItemDetails) {
+    return this.menuItemService
+      .getItemDetail(id).pipe(tap((res: any) => {
+        const state = getState();
+
+        console.log(res);
+
+        patchState({
+          selectedItem: res,
         });
       }));
   }

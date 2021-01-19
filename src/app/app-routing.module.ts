@@ -10,9 +10,8 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'details',
+    path: 'item-details/:id',
     component: DetailsComponent
-
   },
 
   // TODO: redirect everything else to home for now. Maybe create a not found page.

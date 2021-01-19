@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItemModel } from 'src/app/models/menu-item.model';
 
 @Component({
@@ -11,9 +12,12 @@ export class MenuCardComponent implements OnInit {
 
   defaultImage = 'https://via.placeholder.com/420x320';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  goToDetails(itemId) {
+    this.router.navigate(['/item-details', itemId]);
+  }
 }

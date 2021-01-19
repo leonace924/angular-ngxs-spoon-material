@@ -10,3 +10,11 @@ export class GetMenuItems {
   ) {
   }
 }
+
+export class GetItemDetails {
+  static readonly type = '[Menu Item] Get Item Details';
+
+  constructor(public id: string) {
+
+  }
+}

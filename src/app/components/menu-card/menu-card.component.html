@@ -1,5 +1,6 @@
-<mat-card class="food-card">
+<mat-card class="food-card" (click)="goToDetails(item.id)">
   <img mat-card-image [defaultImage]="defaultImage" [lazyLoad]="item.photo" alt="Food Image">
+
   <mat-card-content>
     <mat-card-title>{{item.name}}</mat-card-title>
     <p>
