@@ -13,7 +13,6 @@ export class MenuItemService {
     }
   }
 
-
   constructor(private http: HttpClient) { }
 
   fetchMenuItems(page, limit = 10) {

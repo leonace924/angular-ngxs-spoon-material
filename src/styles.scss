@@ -10,8 +10,14 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
 @import '~bootstrap/scss/bootstrap';
+
+
+button:focus {
+  outline: none;
+}

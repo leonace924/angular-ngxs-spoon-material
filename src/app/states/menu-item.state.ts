@@ -2,21 +2,21 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { GetMenuItems } from '../actions/menu-item.action';
+import { GetMenuItems, SearchMenuItems } from '../actions/menu-item.action';
 import { MenuItemService } from '../services/menu-item.service';
 import { MenuItemModel } from '../models/menu-item.model';
 
 export class MenuItemStateModel {
-  items: MenuItemModel[];
-  hasNext: boolean;
+  allItems: MenuItemModel[];
+  filteredItems: MenuItemModel[];
   selectedItem: MenuItemModel;
 }
 
 @State<MenuItemStateModel>({
   name: 'menuItems',
   defaults: {
-    items: [],
-    hasNext: true,
+    allItems: [],
+    filteredItems: [],
     selectedItem: null
   }
 })
@@ -27,7 +27,12 @@ export class MenuItemState {
 
   @Selector()
   static getMenuItemList(state: MenuItemStateModel) {
-    return state.items;
+    return state.allItems;
+  }
+
+  @Selector()
+  static getFilteredItemList(state: MenuItemStateModel) {
+    return state.filteredItems;
   }
 
   @Selector()
@@ -36,15 +41,30 @@ export class MenuItemState {
   }
 
   @Action(GetMenuItems)
-  getMenuItems({ getState, setState }: StateContext<MenuItemStateModel>, action: GetMenuItems) {
-    return this.menuItemService.fetchMenuItems(action.page).pipe(tap((res) => {
+  getMenuItems({ getState, patchState }: StateContext<MenuItemStateModel>, { page, keys }: GetMenuItems) {
+    return this.menuItemService.fetchMenuItems(page).pipe(tap((res: any) => {
       const state = getState();
 
-      setState({
-        ...state,
-        hasNext: res.hasNext,
-        items: [...state.items.concat(res.results?.items)]
+      if (!res.results) return;
+
+      patchState({
+        allItems: [...state.allItems.concat(res.results?.items)],
+        filteredItems: [...state.allItems.concat(res.results?.items)].filter((val) =>
+          keys.every((key) => val.name.toLowerCase().includes(key.toLowerCase()))
+        )
       });
     }));
+  }
+
+  @Action(SearchMenuItems)
+  searchMenuItems({ getState, patchState }: StateContext<MenuItemStateModel>, { keys }: SearchMenuItems) {
+    const state = getState();
+
+    patchState({
+      filteredItems:
+        [...state.allItems.filter((val) =>
+          keys.every((key) => val.name.toLowerCase().includes(key.toLowerCase()))
+        )]
+    })
   }
 }
