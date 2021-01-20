@@ -30,7 +30,6 @@ export class ItemDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
 
-
     this.store.dispatch(new SelectItem(this.id));
     this.store.dispatch(new GetItemDetails(this.id));
   }

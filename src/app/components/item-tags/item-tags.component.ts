@@ -14,10 +14,7 @@ export class ItemTagsComponent implements OnInit {
 
   ngOnInit(): void {
     this.tagNames = this.tags?.map((tag) => tag.name)
-      .map((el) => el.split(">").slice(-1)).flat().filter((el) => el);
-    // this.tagNames.flat();
-    // ;
-
-    console.log(this.tagNames);
+      .map((el) => el.split(">").slice(-1)).flat()
+      .filter((el) => el);
   }
 }

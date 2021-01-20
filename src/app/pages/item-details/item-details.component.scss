@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  height: 100%;
+  min-height: 100%;
   background-color: #fafafa;
 
   .mat-icon-button {
@@ -18,16 +18,18 @@
       border-radius: 0.5rem;
 
       @include media-breakpoint-up(lg) {
-        width: 300px;
-        height: 300px;
+        width: 400px;
+        height: 400px;
       }
     }
 
     &__content {
       margin-top: 1.5rem;
+      padding-bottom: 2rem;
 
-      @include media-breakpoint-up(lg) {
+      @include media-breakpoint-up(md) {
         margin-top: 0;
+        padding-bottom: 1rem;
       }
     }
 

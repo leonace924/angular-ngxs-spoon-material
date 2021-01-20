@@ -7,13 +7,15 @@
       </mat-list-item>
     </mat-list>
   </mat-tab>
+
   <mat-tab label="Sizes and prices">
     <mat-list>
-      <mat-list-item *ngFor="let size of sizesAndPrices">
+      <mat-list-item *ngFor="let size of sizesAndPrices; let i = index">
         <div class="d-flex justify-content-between w-100">
           <span>{{size.name}}</span>
           <span>${{size.menuAttributes[0].price}}</span>
         </div>
+        <mat-divider *ngIf="i !== sizesAndPrices.length - 1"></mat-divider>
       </mat-list-item>
     </mat-list>
   </mat-tab>
