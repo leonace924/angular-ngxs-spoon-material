@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { actionsExecuting, ActionsExecuting } from '@ngxs-labs/actions-executing';
 
@@ -19,11 +19,8 @@ export class MenuCardComponent implements OnInit {
 
   defaultImage = 'https://via.placeholder.com/420x320';
 
-  constructor(
-    private store: Store
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.store.dispatch(new GetItemDetails(this.item.id));
   }
 }

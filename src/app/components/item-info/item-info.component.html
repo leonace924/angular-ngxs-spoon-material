@@ -1,0 +1,20 @@
+<mat-tab-group color="primary" backgroundColor="primary">
+  <mat-tab label="Available for">
+    <mat-list>
+      <mat-list-item *ngFor="let item of availableFor; let i = index">
+        {{item}}
+        <mat-divider *ngIf="i !== availableFor.length - 1"></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </mat-tab>
+  <mat-tab label="Sizes and prices">
+    <mat-list>
+      <mat-list-item *ngFor="let size of sizesAndPrices">
+        <div class="d-flex justify-content-between w-100">
+          <span>{{size.name}}</span>
+          <span>${{size.menuAttributes[0].price}}</span>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-tab>
+</mat-tab-group>

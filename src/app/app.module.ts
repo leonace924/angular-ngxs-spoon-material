@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './pages/home/home.component';
-import { DetailsComponent } from './pages/details/details.component';
 
 import { MaterialModule } from './material.module';
 import { ServicesModule } from './services/services.module';
@@ -26,17 +25,24 @@ import { MenuItemState } from './states/menu-item.state';
 import { MenuCardComponent } from './components/menu-card/menu-card.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { SortByHeaderComponent } from './components/sort-by-header/sort-by-header.component';
+import { ItemDetailsComponent } from './pages/item-details/item-details.component';
+import { ItemInfoComponent } from './components/item-info/item-info.component';
+import { ItemHeaderComponent } from './components/item-header/item-header.component';
+import { ItemTagsComponent } from './components/item-tags/item-tags.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DetailsComponent,
+    ItemDetailsComponent,
     HeaderComponent,
     SearchBarComponent,
     MenuCardComponent,
     FiltersComponent,
     SortByHeaderComponent,
+    ItemInfoComponent,
+    ItemHeaderComponent,
+    ItemTagsComponent,
   ],
   imports: [
     BrowserModule,

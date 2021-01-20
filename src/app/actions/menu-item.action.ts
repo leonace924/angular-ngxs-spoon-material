@@ -18,6 +18,13 @@ export class GetItemDetails {
   }
 }
 
+export class SelectItem {
+  static readonly type = '[Menu Item] Select Item';
+
+  constructor(public id: string) {
+  }
+}
+
 export class CleanItems {
   static readonly type = '[Menu List] Clean Menu Items';
 }

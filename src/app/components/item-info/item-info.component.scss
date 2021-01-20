@@ -1,0 +1,28 @@
+@import "~bootstrap/scss/bootstrap-grid.scss";
+
+:host {
+  .mat-tab-group {
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      width: auto;
+      display: inline-flex;
+    }
+
+    span {
+      text-transform: capitalize;
+    }
+
+    ::ng-deep .mat-tab-header {
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    ::ng-deep .mat-tab-label {
+      width: 50%;
+    }
+
+    ::ng-deep .mat-list-item-content {
+      text-transform: capitalize;
+    }
+  }
+}

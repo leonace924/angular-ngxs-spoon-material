@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
-import { DetailsComponent } from './pages/details/details.component';
+import { ItemDetailsComponent } from './pages/item-details/item-details.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'item-details/:id',
-    component: DetailsComponent
+    component: ItemDetailsComponent
   },
 
   // TODO: redirect everything else to home for now. Maybe create a not found page.

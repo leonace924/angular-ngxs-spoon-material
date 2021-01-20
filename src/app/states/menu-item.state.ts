@@ -4,11 +4,12 @@ import { tap } from 'rxjs/operators';
 
 import { MenuItemModel } from '../models/menu-item.model';
 import { MenuItemService } from '../services/menu-item.service';
-import { GetMenuItems, GetItemDetails, CleanItems, HideItem } from '../actions/menu-item.action';
+import { GetMenuItems, GetItemDetails, SelectItem, CleanItems, HideItem } from '../actions/menu-item.action';
 
 export class MenuItemStateModel {
   allItems: Array<MenuItemModel>;
-  selectedItem: any;
+  itemDetail: MenuItemModel;
+  selectedItem: MenuItemModel;
   hiddenItemIdList: Array<string>;
 }
 
@@ -16,6 +17,7 @@ export class MenuItemStateModel {
   name: 'menuItems',
   defaults: {
     allItems: [],
+    itemDetail: null,
     selectedItem: null,
     hiddenItemIdList: []
   }
@@ -32,7 +34,12 @@ export class MenuItemState {
 
 
   @Selector()
-  static getSelectedItem(state: MenuItemStateModel) {
+  static getItemDetail(state: MenuItemStateModel) {
+    return state.itemDetail;
+  }
+
+  @Selector()
+  static getSelectedItem(state: MenuItemStateModel,) {
     return state.selectedItem;
   }
 
@@ -47,6 +54,7 @@ export class MenuItemState {
         if (!res.results) return;
 
         patchState({
+          itemDetail: null,
           allItems: [...state.allItems, ...res.results?.items]
             .filter((el) => [...state.hiddenItemIdList].every((itemId) => el.id !== itemId)),
         });
@@ -58,9 +66,20 @@ export class MenuItemState {
     return this.menuItemService
       .getItemDetail(id).pipe(tap((res: any) => {
         patchState({
-          selectedItem: res,
+          itemDetail: res,
         });
       }));
+  }
+
+  @Action(SelectItem)
+  selectItem({ getState, patchState }: StateContext<MenuItemStateModel>, { id }: SelectItem) {
+    const state = getState();
+
+    let newItem = [...state.allItems].filter((item) => item.id === id);
+
+    patchState({
+      selectedItem: newItem.length > 0 ? newItem[0] : null,
+    });
   }
 
   @Action(HideItem)

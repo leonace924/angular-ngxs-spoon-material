@@ -1,0 +1,42 @@
+<div>
+  <mat-toolbar color="primary">
+    <div class="d-flex align-items-center">
+      <button mat-icon-button aria-label="icon-button with menu icon" (click)="onBackHome()">
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div class="container pt-5">
+    <mat-progress-spinner mode="indeterminate" diameter="30" *ngIf="getDetailIsExecuting | async">
+    </mat-progress-spinner>
+
+    <div *ngIf="itemDetail | async" class="item-detail">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="item-detail__mobile">
+            <app-item-header [itemDetail]="itemDetail | async"></app-item-header>
+            <app-item-tags [tags]="(item | async)?.tags"></app-item-tags>
+            <hr />
+          </div>
+
+          <img [defaultImage]=" defaultImage"
+            [lazyLoad]="(itemDetail | async).photos[0].resolutions.default.url" alt="Food Image" />
+        </div>
+
+        <div class="col-md-6 item-detail__content">
+          <div class="item-detail__desktop">
+            <app-item-header [itemDetail]="itemDetail | async"></app-item-header>
+            <app-item-tags [tags]="(item | async)?.tags"></app-item-tags>
+            <hr />
+          </div>
+
+          <app-item-info [availableFor]="(itemDetail | async).availableFor"
+            [sizesAndPrices]="(itemDetail | async).sizesAndPrices">
+          </app-item-info>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
