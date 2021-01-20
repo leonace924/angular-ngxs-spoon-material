@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,6 +7,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsResetPluginModule } from 'ngxs-reset-plugin';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxsActionsExecutingModule } from '@ngxs-labs/actions-executing';
+import { SwipeAngularListModule } from 'swipe-angular-list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,7 +47,9 @@ import { SortByHeaderComponent } from './components/sort-by-header/sort-by-heade
     MaterialModule,
     ServicesModule,
     InfiniteScrollModule,
+    SwipeAngularListModule,
     FormsModule,
+    HammerModule,
     NgxsModule.forRoot([MenuItemState], { developmentMode: !env.production }),
     NgxsActionsExecutingModule.forRoot(),
     NgxsResetPluginModule.forRoot()

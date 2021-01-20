@@ -34,6 +34,6 @@ export class MenuItemService {
   }
 
   getItemDetail(itemId) {
-    return this.http.get<any>(`${this.apiUrl}/catalog/consumer/item/${itemId}`, this.options);
+    return this.http.get<any>(`${this.apiUrl}/catalog/v1/consumer/item/${itemId}`, this.options);
   }
 }

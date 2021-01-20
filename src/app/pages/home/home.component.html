@@ -10,7 +10,7 @@
 
     <div class="menu-list px-3 pt-2 pb-3">
       <div class="row">
-        <div class="col-lg-3 menu-list__filters">
+        <div class="menu-list__filters col-lg-3 ">
           <app-filters (filterChanged)="onFilterUpdated($event)"></app-filters>
         </div>
 
@@ -27,21 +27,41 @@
             <div class="menu-list__scroll" infiniteScroll [infiniteScrollDistance]="scrollDistance"
               [infiniteScrollThrottle]="throttle" (scrolled)="onScrollEnd()">
 
-              <div class="row" *ngIf="items">
-                <div class="col-md-6 col-xl-4" *ngFor="let item of items | async">
-                  <app-menu-card [item]="item"></app-menu-card>
+              <div class="menu-list__desktop">
+                <div class="row" *ngIf="items">
+                  <div class="col-md-6 col-xl-4" *ngFor="let item of items | async">
+                    <app-menu-card [item]="item"></app-menu-card>
+                  </div>
                 </div>
+              </div>
+
+              <div class="menu-list__mobile">
+                <sw-item-list *ngFor="let item of items | async" [inside]="item"
+                  [item-class]="'list-custom'" [show-mark]="false" (swClick)="clickOnItem(item)"
+                  (swipeCb)="swipeCallback($event)" [editTemplate]="editTemplate"
+                  [trashTemplate]="null" [customTemplate]="customTemplateSrc"
+                  (callback)="action($event)">
+                </sw-item-list>
               </div>
 
               <mat-progress-spinner mode="indeterminate" diameter="30"
                 *ngIf="getItemsIsExecuting | async">
               </mat-progress-spinner>
             </div>
-
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </mat-drawer-container>
+
+<ng-template #editTemplate>
+  <i class="fas fa-edit"></i>
+</ng-template>
+<ng-template #trashTemplate>
+  <i class="far fa-trash-alt"></i>
+</ng-template>
+
+<ng-template #customTemplateSrc let-item="item" let-id="id">
+  <app-menu-card [item]="item"></app-menu-card>
+</ng-template>

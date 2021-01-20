@@ -27,6 +27,64 @@ export class HomeComponent implements OnInit {
   selectedSort: string = "name";
   selectedOrder: boolean = true;
 
+  list = [
+    {
+      id: 1,
+      title: 'Realizar la tarea asignada!',
+      subTitle: '9:00pm'
+    },
+    {
+      id: 2,
+      title: 'Visitar al perro en casa de tu amiga',
+      subTitle: '9:00pm'
+    },
+    {
+      id: 3,
+      title: 'Llamar al doctor',
+      subTitle: '9:00pm'
+    },
+    {
+      id: 4,
+      title: 'Buscar el auto en el taller',
+      subTitle: '9:00pm'
+    },
+    {
+      id: 4,
+      title: 'Buscar el auto en el taller',
+      subTitle: '9:00pm'
+    },
+    {
+      id: 4,
+      title: 'Buscar el auto en el taller',
+      subTitle: '9:00pm'
+    },
+    {
+      id: 4,
+      title: 'Buscar el auto en el taller',
+      subTitle: '9:00pm'
+    },
+    {
+      id: 4,
+      title: 'Buscar el auto en el taller',
+      subTitle: '9:00pm'
+    },
+    {
+      id: 4,
+      title: 'Buscar el auto en el taller',
+      subTitle: '9:00pm'
+    },
+    {
+      id: 4,
+      title: 'Buscar el auto en el taller',
+      subTitle: '9:00pm'
+    },
+    {
+      id: 4,
+      title: 'Buscar el auto en el taller',
+      subTitle: '9:00pm'
+    }
+  ];
+
   constructor(private store: Store) { }
 
   ngOnInit(): void {
@@ -79,5 +137,17 @@ export class HomeComponent implements OnInit {
 
     // call GetMenuItems action
     this.getMenuItems();
+  }
+
+  action = (a) => {
+    console.log(a);
+  };
+
+  clickOnItem = (a) => {
+    console.log('Click on item');
+  }
+
+  swipeCallback = (a) => {
+    console.log('Callback Swipe', a);
   }
 }

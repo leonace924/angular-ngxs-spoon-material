@@ -10,6 +10,9 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+* {
+  touch-action: pan-y !important;
+}
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
