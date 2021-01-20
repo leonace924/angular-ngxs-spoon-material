@@ -1,5 +1,25 @@
+@import "~bootstrap/scss/bootstrap-grid.scss";
+
 :host {
   width: auto;
+
+  .sort-header {
+    display: flex;
+    flex-direction: column;
+
+    @include media-breakpoint-up(lg) {
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__result {
+      margin-bottom: 1rem;
+
+      @include media-breakpoint-up(lg) {
+        margin-bottom: 0;
+      }
+    }
+  }
 
   h3 {
     color: #673ab7;
