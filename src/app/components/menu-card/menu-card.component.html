@@ -1,5 +1,5 @@
-<div class="food-card" (click)="goToDetails(item.id)">
-  <img [defaultImage]="defaultImage" [lazyLoad]="item.photo" alt="Food Image" />
+<div class="food-card">
+  <img [defaultImage]=" defaultImage" [lazyLoad]="item.photo" alt="Food Image" />
 
   <div class="food-card__content">
     <h2 class="food-card__title">{{item.name}}</h2>

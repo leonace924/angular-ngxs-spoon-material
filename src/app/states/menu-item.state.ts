@@ -4,18 +4,20 @@ import { tap } from 'rxjs/operators';
 
 import { MenuItemModel } from '../models/menu-item.model';
 import { MenuItemService } from '../services/menu-item.service';
-import { GetMenuItems, GetItemDetails } from '../actions/menu-item.action';
+import { GetMenuItems, GetItemDetails, CleanItems, HideItem } from '../actions/menu-item.action';
 
 export class MenuItemStateModel {
-  allItems: MenuItemModel[];
+  allItems: Array<MenuItemModel>;
   selectedItem: any;
+  hiddenItemIdList: Array<string>;
 }
 
 @State<MenuItemStateModel>({
   name: 'menuItems',
   defaults: {
     allItems: [],
-    selectedItem: null
+    selectedItem: null,
+    hiddenItemIdList: []
   }
 })
 @Injectable()
@@ -45,7 +47,8 @@ export class MenuItemState {
         if (!res.results) return;
 
         patchState({
-          allItems: [...state.allItems, ...res.results?.items],
+          allItems: [...state.allItems, ...res.results?.items]
+            .filter((el) => [...state.hiddenItemIdList].every((itemId) => el.id !== itemId)),
         });
       }));
   }
@@ -54,13 +57,28 @@ export class MenuItemState {
   getItemDetails({ getState, patchState }: StateContext<MenuItemStateModel>, { id }: GetItemDetails) {
     return this.menuItemService
       .getItemDetail(id).pipe(tap((res: any) => {
-        const state = getState();
-
-        console.log(res);
-
         patchState({
           selectedItem: res,
         });
       }));
+  }
+
+  @Action(HideItem)
+  hideItem({ getState, patchState }: StateContext<MenuItemStateModel>, { id }: HideItem) {
+    const state = getState();
+
+    let newIdList = [...state.hiddenItemIdList, id];
+    patchState({
+      hiddenItemIdList: newIdList,
+      allItems: [...state.allItems]
+        .filter((el) => newIdList.every((itemId) => el.id !== itemId)),
+    })
+  }
+
+  @Action(CleanItems)
+  cleanItems({ getState, patchState }: StateContext<MenuItemStateModel>) {
+    patchState({
+      allItems: []
+    })
   }
 }

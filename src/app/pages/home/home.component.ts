@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { actionsExecuting, ActionsExecuting } from '@ngxs-labs/actions-executing';
 
 import { MenuItemModel } from 'src/app/models/menu-item.model';
 import { MenuItemState } from 'src/app/states/menu-item.state';
-import { GetMenuItems } from 'src/app/actions/menu-item.action';
-import { StateReset } from 'ngxs-reset-plugin';
+import { GetMenuItems, CleanItems, HideItem } from 'src/app/actions/menu-item.action';
 
 @Component({
   selector: 'app-home',
@@ -27,65 +27,10 @@ export class HomeComponent implements OnInit {
   selectedSort: string = "name";
   selectedOrder: boolean = true;
 
-  list = [
-    {
-      id: 1,
-      title: 'Realizar la tarea asignada!',
-      subTitle: '9:00pm'
-    },
-    {
-      id: 2,
-      title: 'Visitar al perro en casa de tu amiga',
-      subTitle: '9:00pm'
-    },
-    {
-      id: 3,
-      title: 'Llamar al doctor',
-      subTitle: '9:00pm'
-    },
-    {
-      id: 4,
-      title: 'Buscar el auto en el taller',
-      subTitle: '9:00pm'
-    },
-    {
-      id: 4,
-      title: 'Buscar el auto en el taller',
-      subTitle: '9:00pm'
-    },
-    {
-      id: 4,
-      title: 'Buscar el auto en el taller',
-      subTitle: '9:00pm'
-    },
-    {
-      id: 4,
-      title: 'Buscar el auto en el taller',
-      subTitle: '9:00pm'
-    },
-    {
-      id: 4,
-      title: 'Buscar el auto en el taller',
-      subTitle: '9:00pm'
-    },
-    {
-      id: 4,
-      title: 'Buscar el auto en el taller',
-      subTitle: '9:00pm'
-    },
-    {
-      id: 4,
-      title: 'Buscar el auto en el taller',
-      subTitle: '9:00pm'
-    },
-    {
-      id: 4,
-      title: 'Buscar el auto en el taller',
-      subTitle: '9:00pm'
-    }
-  ];
-
-  constructor(private store: Store) { }
+  constructor(
+    private router: Router,
+    private store: Store
+  ) { }
 
   ngOnInit(): void {
     this.getMenuItems();
@@ -133,21 +78,20 @@ export class HomeComponent implements OnInit {
   filterNewItems() {
     // reset state and page
     this.page = 1;
-    this.store.dispatch(new StateReset(MenuItemState));
-
+    this.store.dispatch(new CleanItems());
     // call GetMenuItems action
     this.getMenuItems();
   }
 
-  action = (a) => {
-    console.log(a);
-  };
-
-  clickOnItem = (a) => {
-    console.log('Click on item');
+  goToDetails(itemId) {
+    this.router.navigate(['/item-details', itemId]);
   }
 
+  action = (event, id) => {
+    this.store.dispatch(new HideItem(id));
+  };
+
   swipeCallback = (a) => {
-    console.log('Callback Swipe', a);
+
   }
 }

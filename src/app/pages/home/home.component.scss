@@ -41,9 +41,37 @@
       }
     }
 
-    ::ng-deep .list-swipe {
+    ::ng-deep sw-item-list {
+      .list-custom {
+        width: 100%;
+        position: relative;
+      }
+
       .mark {
         display: none;
+      }
+
+      ::ng-deep .options-btn {
+        right: 0;
+        padding: 0;
+        height: 100%;
+        transform: none;
+
+        &.active {
+          transform: none;
+        }
+
+        .option-list {
+          color: #fff;
+          background: #673ab7;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          h4 {
+            margin: 0;
+          }
+        }
       }
     }
   }

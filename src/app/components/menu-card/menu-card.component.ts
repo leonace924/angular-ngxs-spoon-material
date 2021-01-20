@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { actionsExecuting, ActionsExecuting } from '@ngxs-labs/actions-executing';
@@ -21,15 +20,10 @@ export class MenuCardComponent implements OnInit {
   defaultImage = 'https://via.placeholder.com/420x320';
 
   constructor(
-    private store: Store,
-    private router: Router
+    private store: Store
   ) { }
 
   ngOnInit(): void {
     this.store.dispatch(new GetItemDetails(this.item.id));
-  }
-
-  goToDetails(itemId) {
-    this.router.navigate(['/item-details', itemId]);
   }
 }
