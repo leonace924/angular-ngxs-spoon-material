@@ -9,6 +9,10 @@ export class ItemInfoComponent implements OnInit {
   @Input() availableFor: Array<string>;
   @Input() sizesAndPrices: Array<any>;
 
+  itemSizes = {
+    "SINGLE_PRICE": "price"
+  }
+
   constructor() { }
 
   ngOnInit(): void {
