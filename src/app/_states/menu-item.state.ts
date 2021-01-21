@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 
-import { MenuItemModel } from '../models/menu-item.model';
-import { MenuItemService } from '../services/menu-item.service';
-import { GetMenuItems, GetItemDetails, SelectItem, CleanItems, HideItem } from '../actions/menu-item.action';
+import { MenuItemModel } from '../_models/menu-item.model';
+import { MenuItemService } from '../_services/menu-item.service';
+import { GetMenuItems, GetItemDetails, SelectItem, CleanItems, HideItem } from '../_actions/menu-item.action';
 
 export class MenuItemStateModel {
   allItems: Array<MenuItemModel>;

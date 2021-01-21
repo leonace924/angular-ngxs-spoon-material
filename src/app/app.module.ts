@@ -15,13 +15,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './pages/home/home.component';
 
 import { MaterialModule } from './material.module';
-import { ServicesModule } from './services/services.module';
+import { ServicesModule } from './_services/services.module';
 
 import { environment as env } from 'src/environments/environment';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
-import { MenuItemState } from './states/menu-item.state';
+import { MenuItemState } from './_states/menu-item.state';
 import { MenuCardComponent } from './components/menu-card/menu-card.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { SortByHeaderComponent } from './components/sort-by-header/sort-by-header.component';

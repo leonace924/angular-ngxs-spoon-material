@@ -4,9 +4,9 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { actionsExecuting, ActionsExecuting } from '@ngxs-labs/actions-executing';
 
-import { MenuItemModel } from 'src/app/models/menu-item.model';
-import { MenuItemState } from 'src/app/states/menu-item.state';
-import { GetMenuItems, CleanItems, HideItem } from 'src/app/actions/menu-item.action';
+import { MenuItemModel } from 'src/app/_models/menu-item.model';
+import { MenuItemState } from 'src/app/_states/menu-item.state';
+import { GetMenuItems, CleanItems, HideItem } from 'src/app/_actions/menu-item.action';
 
 @Component({
   selector: 'app-home',

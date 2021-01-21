@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { actionsExecuting, ActionsExecuting } from '@ngxs-labs/actions-executing';
 
-import { MenuItemModel } from 'src/app/models/menu-item.model';
-import { MenuItemState } from 'src/app/states/menu-item.state';
-import { GetItemDetails, SelectItem } from 'src/app/actions/menu-item.action';
+import { MenuItemModel } from 'src/app/_models/menu-item.model';
+import { MenuItemState } from 'src/app/_states/menu-item.state';
+import { GetItemDetails, SelectItem } from 'src/app/_actions/menu-item.action';
 
 @Component({
   selector: 'app-item-details',

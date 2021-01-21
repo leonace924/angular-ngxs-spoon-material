@@ -3,9 +3,9 @@ import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { actionsExecuting, ActionsExecuting } from '@ngxs-labs/actions-executing';
 
-import { MenuItemState } from 'src/app/states/menu-item.state';
-import { GetItemDetails } from 'src/app/actions/menu-item.action';
-import { MenuItemModel } from 'src/app/models/menu-item.model';
+import { MenuItemState } from 'src/app/_states/menu-item.state';
+import { GetItemDetails } from 'src/app/_actions/menu-item.action';
+import { MenuItemModel } from 'src/app/_models/menu-item.model';
 
 @Component({
   selector: 'app-menu-card',
