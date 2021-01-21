@@ -1,6 +1,12 @@
-# AngularSpoonMaterial
+# Angular Ngxs Spoon Material
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
+
+This project is using - Angular 11, Angular Material, NGXS and Bootstrap.
+
+I implemented _Lazy load_ for images from API, _infinite scroll_ and _swipe to hide_ feature for mobile list.
+
+## Most command that I used while making project
 
 `ng serve --live-reload -o`
 
