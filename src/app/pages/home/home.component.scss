@@ -5,8 +5,26 @@
   flex-direction: column;
   min-height: 100%;
 
+  .home-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+  }
+
   mat-drawer-container {
     flex: 1;
+
+    @include media-breakpoint-up(lg) {
+      overflow: inherit;
+    }
+
+    ::ng-deep .mat-drawer-content {
+      @include media-breakpoint-up(lg) {
+        overflow: inherit;
+      }
+    }
   }
 
   .menu-list {

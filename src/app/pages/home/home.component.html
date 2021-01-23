@@ -1,13 +1,14 @@
-<app-header (openDrawer)="drawer.toggle()"></app-header>
+<div class="home-header">
+  <app-header (openDrawer)="drawer.toggle()"></app-header>
+  <app-search-bar (valueChanged)="onKeyTermAdded($event)"></app-search-bar>
+</div>
 
-<mat-drawer-container class="example-container" autosize>
+<mat-drawer-container class="drawer-container" autosize>
   <mat-drawer #drawer mode="over" fixedInViewport>
     <app-filters (filterChanged)="onFilterUpdated($event)"></app-filters>
   </mat-drawer>
 
   <div>
-    <app-search-bar (valueChanged)="onKeyTermAdded($event)"></app-search-bar>
-
     <div class="menu-list px-3 pt-2 pb-3">
       <div class="row">
         <div class="menu-list__filters col-lg-3 ">
